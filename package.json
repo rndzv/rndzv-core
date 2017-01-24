@@ -1,0 +1,36 @@
+{
+  "name": "rndzv-core",
+  "version": "0.0.1",
+  "description": "core service for rndzv peer-to-peer chat",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "dhtnode": "./bin/dhtnode.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rndzv/rndzv-core.git"
+  },
+  "author": "Abe Fetterman <abe@rndzv.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/rndzv/rndzv-core/issues"
+  },
+  "homepage": "https://github.com/rndzv/rndzv-core#readme",
+  "dependencies": {
+    "async": "^2.1.4",
+    "commander": "^2.9.0",
+    "dnode": "^1.2.2",
+    "faker": "^3.1.0",
+    "forever": "^0.15.3",
+    "forever-monitor": "^1.7.1",
+    "kad": "^1.6.4",
+    "kad-spartacus": "0.0.6",
+    "kad-telemetry": "0.0.1",
+    "kad-traverse": "0.0.4",
+    "merge": "^1.2.0",
+    "mkdirp": "^0.5.1"
+  }
+}
