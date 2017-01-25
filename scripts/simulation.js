@@ -22,7 +22,7 @@ if (!Number.isNaN(Number(process.argv[2]))) {
 // Try to set the interval at which the simulation sends STORE messages
 // to a value somewhat consistent with the number of node in the simulation
 // to throttle the messages (since we are running in a single thread).
-var STORE_INTERVAL = NUM_NODES * 10;
+var STORE_INTERVAL = NUM_NODES * 1000;
 
 // Start at the highest available port and count down for the number of nodes
 // in the simulation.
@@ -32,7 +32,7 @@ var port = 65535;
 var seed = [];
 
 // Create the number of nodes specified for the simulation and stick them into
-// and array so we can connect them to one another.
+// an array so we can connect them to one another.
 while (created < NUM_NODES) {
   let keypair = new spartacus.KeyPair();
   var node = new DHTNode({
@@ -40,6 +40,7 @@ while (created < NUM_NODES) {
     port: port-created,
     privateKey: keypair.getPrivateKey(),
     ipc: path.join(os.tmpdir(), `dhtnode${created}.sock`),
+    logger:3,
     logLabel: `DHTNode${created}`,
     seeds:seed
   });
@@ -51,3 +52,14 @@ while (created < NUM_NODES) {
   nodes.push(node);
   created++;
 }
+
+setInterval(function() {
+  let node=nodes[0];
+  let key = faker.random.uuid();
+  let value = faker.hacker.phrase();
+  node.putItem(key, value, function() {
+    node.getItem(key, function(error, value) {
+      console.log('got phrase: %s',value);
+    });
+  });
+}, STORE_INTERVAL);
