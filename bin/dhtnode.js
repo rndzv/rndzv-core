@@ -36,6 +36,7 @@ program.option(
 program.command('start')
 .description('connect the dhtnode service to the network')
 .action(function start() {
+  console.log('config: '+program.config)
   if (!fs.existsSync(program.config)) {
     mkdirp.sync(program.config);
   }

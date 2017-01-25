@@ -32,5 +32,8 @@
     "kad-traverse": "0.0.4",
     "merge": "^1.2.0",
     "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.38.0"
   }
 }
